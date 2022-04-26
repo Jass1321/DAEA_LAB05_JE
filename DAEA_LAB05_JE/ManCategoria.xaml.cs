@@ -1,17 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Business;
 using Entity;
 
@@ -27,6 +16,7 @@ namespace S5_WPF
         public ManCategoria(int Id)
         {
             InitializeComponent();
+
             ID = Id;
 
             if (ID > 0)
@@ -38,8 +28,8 @@ namespace S5_WPF
                 if (categorias.Count > 0)
                 {
                     lblID.Content = categorias[0].IdCategoria.ToString();
-                    txtNombre.Text = categorias[1].NombreCategoria;
-                    txtDescripcion.Text = categorias[2].Descripcion;
+                    txtNombre.Text = categorias[0].NombreCategoria;
+                    txtDescripcion.Text = categorias[0].Descripcion;
                 }
             }
         }
@@ -57,7 +47,7 @@ namespace S5_WPF
                 if (ID > 0)
                 {
                     result = bCategoria.Actualizar(new Categoria
-                    {
+                   {
                         IdCategoria = ID,
                         NombreCategoria = txtNombre.Text,
                         Descripcion = txtDescripcion.Text
@@ -71,12 +61,10 @@ namespace S5_WPF
                         Descripcion = txtDescripcion.Text
                     });
                 }
-
                 if (!result)
                 {
                     MessageBox.Show("Comunicarse con el Administrador");
                 }
-
                 Close();
             }
             catch (Exception ex)
@@ -88,10 +76,37 @@ namespace S5_WPF
                 bCategoria = null;
             }
         }
-
         private void btnCerrar_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            BCategoria bCategoria = null;
+            bool result = true;
+            try
+            {
+                //1° se lista todas las categorias
+                bCategoria = new BCategoria();
+
+                //2° eliminar el registro
+                result = bCategoria.Eliminar(ID);
+                if (!result)
+                {
+                    MessageBox.Show("Comunicarse con el Administrador");
+                }
+                Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Comunicarse con el Administrador");
+            }
+            finally
+            {
+                bCategoria = null;
+            }
+        }
+
     }
 }

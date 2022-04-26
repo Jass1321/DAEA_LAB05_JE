@@ -41,6 +41,7 @@
         <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
             <Button Margin="10,0,10,0" x:Name="btnGrabar" Click="btnGrabar_Click">Grabar</Button>
             <Button Margin="0,0,0,0" x:Name="btnCerrar" Click="btnCerrar_Click">Cerrar</Button>
+            <Button Margin="10,0,10,0" x:Name="btnEliminar" Click="btnEliminar_Click">Eliminar</Button>
         </StackPanel>
 
 

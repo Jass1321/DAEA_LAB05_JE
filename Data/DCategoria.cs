@@ -45,6 +45,25 @@ namespace Data
             return categorias;
         }
 
+        public void Eliminar(int IdCategoria)
+        {
+            SqlParameter[] parameters = null;
+            string commandText = string.Empty;
+
+            try
+            {
+                commandText = "USP_DelCategoria";
+                parameters = new SqlParameter[1];
+                parameters[0] = new SqlParameter("@idcategoria", SqlDbType.Int);
+                parameters[0].Value = IdCategoria;
+                SQLHelper.ExecuteNonQuery(SQLHelper.Connection, commandText, CommandType.StoredProcedure, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Insertar(Categoria categoria)
         {
             SqlParameter[] parameters = null;
@@ -65,6 +84,8 @@ namespace Data
                 throw ex;
             }
         }
+
+        
 
         public void Actualizar(Categoria categoria)
         {
@@ -89,23 +110,6 @@ namespace Data
             }
         }
 
-        public void Eliminar(int IdCategoria)
-        {
-            SqlParameter[] parameters = null;
-            string commandText = string.Empty;
-
-            try
-            {
-                commandText = "USP_DelCategoria";
-                parameters = new SqlParameter[1];
-                parameters[0] = new SqlParameter("@idcategoria", SqlDbType.Int);
-                parameters[0].Value = IdCategoria;
-                SQLHelper.ExecuteNonQuery(SQLHelper.Connection, commandText, CommandType.StoredProcedure, parameters);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+       
     }
 }

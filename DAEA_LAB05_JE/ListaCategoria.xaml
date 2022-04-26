@@ -31,6 +31,7 @@
                           BorderBrush="Gray" BorderThickness="5" SelectionChanged="dgvCategoria_SelectionChanged"  
                           ></DataGrid>
             </StackPanel>
+
         </StackPanel>
     </Grid>
 </Window>
