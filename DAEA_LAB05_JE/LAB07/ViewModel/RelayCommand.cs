@@ -17,8 +17,7 @@ namespace DAEA_LAB05_JE.LAB07.ViewModel
 
         #region Constructors
 
-        public RelayCommand(Action<T> execute)
-            : this(execute, null)
+        public RelayCommand(Action<T> execute) : this(execute, null)
         {
         }
 
@@ -30,7 +29,7 @@ namespace DAEA_LAB05_JE.LAB07.ViewModel
             _execute = execute;
             _canExecute = canExecute;
         }
-        #endregion
+        #endregion Constructor
 
         #region ICommand Members
 

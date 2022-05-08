@@ -15,12 +15,18 @@ namespace DAEA_LAB05_JE.LAB07.Model
 
         public bool Insertar(Categoria categoria)
         {
-            return (new BCategoria()).Insertar(categoria);
+            return new BCategoria().Insertar(categoria);
         }
         public bool Actualizar(Categoria categoria)
         {
-            return (new BCategoria()).Actualizar(categoria);
+            return new BCategoria().Actualizar(categoria);
         }
+
+        public bool Eliminar(int IdCategoria)
+        {
+            return new BCategoria().Eliminar(IdCategoria);
+        }
+
 
         public CategoriaModel()
         {

@@ -12,8 +12,9 @@ namespace DAEA_LAB05_JE.LAB07.ViewModel
 {
     public class ManCategoriaViewModel : ViewModelBase
     {
-        #region propiedades
+        #region Properties
         int _ID;
+
         public int ID
         {
             get { return _ID; }
@@ -26,6 +27,7 @@ namespace DAEA_LAB05_JE.LAB07.ViewModel
                 }
             }
         }
+
         string _Nombre;
         public string Nombre
         {
@@ -39,6 +41,7 @@ namespace DAEA_LAB05_JE.LAB07.ViewModel
                 }
             }
         }
+
         string _Descripcion;
         public string Descripcion
         {
@@ -52,38 +55,73 @@ namespace DAEA_LAB05_JE.LAB07.ViewModel
                 }
             }
         }
-        #endregion
+        #endregion Properties
 
         public ICommand GrabarCommand { set; get; }
         public ICommand CerrarCommand { set; get; }
 
+        public ICommand EliminarCommand { set; get; }
+
         public ManCategoriaViewModel()
         {
+            EliminarCommand = new RelayCommand<object>(
+                o =>
+                {
+                    BCategoria bCategoria = null;
+                    bool result = true;
+                        //1° se lista todas las categorias
+                        bCategoria = new BCategoria();
+
+                        //2° eliminar el registro
+                        result = new CategoriaModel().Eliminar(ID);
+                        MessageBox.Show("Eliminado correctamente");
+                        if (!result)
+                        {
+                            MessageBox.Show("Comunicarse con el Administrador");
+                        }
+                   
+                });
+
             GrabarCommand = new RelayCommand<object>(
                 o =>
                 {
+                    BCategoria bCategoria = null;
+                    bool result = true;
+
                     if (ID > 0)
-                        new CategoriaModel().Actualizar(new Entity.Categoria
+                    {
+                        result = new CategoriaModel().Actualizar(new Entity.Categoria
                         {
                             IdCategoria = ID,
                             NombreCategoria = Nombre,
                             Descripcion = Descripcion
                         });
+                        MessageBox.Show("Actualizado correctamente");
+                    }
                     else
-                        new CategoriaModel().Insertar(new Entity.Categoria
+                    {
+                        result= new CategoriaModel().Insertar(new Entity.Categoria
                         {
                             NombreCategoria = Nombre,
                             Descripcion = Descripcion
                         });
+                        MessageBox.Show("Insertado correctamente");
+                    }
+                    if (!result)
+                    {
+                        MessageBox.Show("Comunicarse con el Administrador");
+                    }
                 });
 
             CerrarCommand = new RelayCommand<Window>(
                 param => Cerrar(param)
                 );
+           
         }
-        void Cerrar(Window window)
+
+            void Cerrar(Window window)
         {
             window.Close();
         }
-        }
     }
+}

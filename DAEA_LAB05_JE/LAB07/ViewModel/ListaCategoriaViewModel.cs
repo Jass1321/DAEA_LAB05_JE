@@ -17,23 +17,19 @@ namespace DAEA_LAB05_JE.LAB07.ViewModel
 
         public ICommand NuevoCommand { set; get; }
         public ICommand ConsultarCommand { set; get; }
-
+        
         public ListaCategoriaViewModel()
         {
             Categorias = new Model.CategoriaModel().Categorias;
-
             NuevoCommand = new RelayCommand<Window>(
-                param => Abrir()
-                );
-
+                param => Abrir());
             ConsultarCommand = new RelayCommand<object>(
-                o => { Categorias = (new Model.CategoriaModel()).Categorias; }
-                );
-
+                o => { Categorias = (new Model.CategoriaModel()).Categorias; });
+            
             void Abrir()
             {
-                View.ManCategoria window = new View.ManCategoria();
-                window.ShowDialog();
+                ManCategoria window = new ManCategoria(0);
+                _= window.ShowDialog();
 
             }
         }

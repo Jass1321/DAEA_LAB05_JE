@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DAEA_LAB05_JE.LAB07.View"
+        xmlns:viewModel="clr-namespace:DAEA_LAB05_JE.LAB07.ViewModel"
+        d:DataContext="{d:DesignInstance Type=viewModel:ListaCategoriaViewModel}"
         mc:Ignorable="d"
         Title="ListaCategoria" Height="450" Width="800">
     <Window.Resources>
@@ -13,21 +15,27 @@
             <Setter Property="FontSize" Value="14"/>
         </Style>
     </Window.Resources>
+   
     <Grid>
         <StackPanel>
             <StackPanel>
                 <Label Content="LISTA DE CATEGORÍAS" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
+                <!--
+                <Button x:Name="btnConsultar" Click="BtnConsultar_Click">Consultar</Button>
+                <Button x:Name="btnNuevo" Click="BtnNuevo_Click">Nuevo</Button> 
+                -->
                 <Button x:Name="btnConsultar" Command="{Binding ConsultarCommand}">Consultar</Button>
                 <Button x:Name="btnNuevo" Command="{Binding NuevoCommand}">Nuevo</Button>
+
             </StackPanel>
 
             <StackPanel>
-                <DataGrid Height="350" x:Name="dgvCategoria" AutoGenerateColumns="True"
+                <DataGrid Height="300" x:Name="dgvCategoria" AutoGenerateColumns="True"
                           GridLinesVisibility="Vertical" HeadersVisibility="All" 
                           Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" 
-                          BorderBrush="Gray" BorderThickness="5"
+                          BorderBrush="Gray" BorderThickness="5" SelectionChanged="DgvCategoria_SelectionChanged"
                           ItemsSource="{Binding Categorias}"
                           ></DataGrid>
             </StackPanel>
