@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Collections.Generic;
 using Business;
 using Entity;
 
-namespace S5_WPF
+namespace DAEA_LAB05_JE
 {
-    /// <summary>
-    /// Lógica de interacción para ListaCategoria.xaml
-    /// </summary>
+
     public partial class ListaCategoria : Window
     {
+   
         public ListaCategoria()
         {
             InitializeComponent();

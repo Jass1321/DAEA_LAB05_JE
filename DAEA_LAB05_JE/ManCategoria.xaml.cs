@@ -4,7 +4,7 @@ using System.Windows;
 using Business;
 using Entity;
 
-namespace S5_WPF
+namespace DAEA_LAB05_JE
 {
     /// <summary>
     /// Lógica de interacción para Categoria.xaml
